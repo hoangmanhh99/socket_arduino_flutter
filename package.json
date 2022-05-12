@@ -1,0 +1,9 @@
+{
+    "name": "socket_arduino_flutter",
+    "version": "1.0.0",
+    "description": "Flutter app connect with arduino on Socket",
+    "dependencies": {
+        "express": "^4.17.3",
+        "socket.io": "^4.5.0"
+    }
+}
