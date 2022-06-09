@@ -18,6 +18,11 @@ io.on('connection', (socket) => {
     socket.broadcast.emit(data)
   })
 
+  socket.on('led', data => {
+    console.log(data)
+    socket.broadcast.emit(data)
+  })
+
   socket.on('disconnect', data => {
     console.log('client connected')
   })
