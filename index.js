@@ -12,6 +12,7 @@ app.get('/', (req, res) => {
 });
 
 io.on('connection', (socket) => {
+  console.log(`\nA socket has been connected: \nID: ${socket.id} \nOrigin: ${socket.handshake.headers.origin}`)
   console.log('a user connected');
   socket.on('direction', data => {
     console.log(data)
@@ -24,7 +25,7 @@ io.on('connection', (socket) => {
   })
 
   socket.on('disconnect', data => {
-    console.log('client connected')
+    console.log('a client disconnected')
   })
 });
 
