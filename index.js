@@ -3,16 +3,18 @@ const app = express();
 const http = require('http');
 const server = http.createServer(app);
 const { Server } = require("socket.io");
-const io = new Server(server, {
-  transports: ["websocket", "polling"],
-  allowEIO3: true,
-  cors: {
-    origin: "*",
-    methods: ["GET", "POST"],
-    transports: ["websocket", "polling"],
-    credentials: true
-  }
-});
+const io = new Server(server
+//   , {
+//   transports: ["websocket", "polling"],
+//   allowEIO3: true,
+//   cors: {
+//     origin: "*",
+//     methods: ["GET", "POST"],
+//     transports: ["websocket", "polling"],
+//     credentials: true
+//   }
+// }
+);
 
 const PORT = process.env.PORT || 3000;
 
@@ -33,6 +35,11 @@ io.on('connection', (socket) => {
   socket.on('led', data => {
     console.log(data)
     socket.broadcast.emit(data)
+  })
+
+  socket.on('distance', data => {
+    console.log(data['now'])
+    io.emit('distance', data['now'].toString())
   })
 
   socket.on('disconnect', data => {
